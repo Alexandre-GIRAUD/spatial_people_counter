@@ -2,7 +2,7 @@
 
 ## Presentation
 
-This project use object detection to count how many people are in a spatial location and track 
+This project uses object detection to count how many people are in a spatial location and track 
 the number of people over time.
 
 The idea is to call the file main.py every k minutes over image extracted from camera covering 
@@ -13,15 +13,16 @@ the monitored area.
 Use object detection on an image
 
 ```
-python main.py -i path_to_image -t 0.8
+python main.py -i path_to_image -t 0.8 -m "https://tfhub.dev/tensorflow/centernet/resnet50v1_fpn_512x512/1"
 ```
-   -i,--image		path to an image
-   -t, --threshold	threshold to validate a prediction from a CNN model	  
+   -i,--image        path to an image
+   -t, --threshold	threshold to validate a prediction from a CNN model	
+   -m,--model        URL/path to the tensorflow model used for object detection   
 
 The main file return the image with bounding boxes in the folder outputs and add a line 
 on the current day logs.
 
-![Screenshot](outputs/president1.png)
+![Screenshot](outputs/datacenter2.png)
 
 ```
 ...
@@ -41,4 +42,12 @@ python utils/visualize_logs.py -p path_to_logs
 Add a figure in the logs folder
 
 ![Screenshot](logs/17-05-2021_fig.png)
+
+## Requierments 
+
+tensorflow >= 2.5
+tensorflow-hub == 0.12.0
+seaborn
+matplotlib
+numpy
 

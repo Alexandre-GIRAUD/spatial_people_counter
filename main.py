@@ -14,14 +14,24 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument("-i","--image",help="path of input of the neuron",required=True)
 parser.add_argument("-t","--threshold", help="threshold for validatiing a model prediction",default=0.8)
+parser.add_argument("-m","--model",help="URL/path to the CNN model used for object detection",default="https://tfhub.dev/tensorflow/centernet/resnet50v1_fpn_512x512/1")
 args = parser.parse_args()
 
 
-def prediction(path_image,t):
-    #GLOBAL VARIABLES
+def prediction(path_image,t,model_path):
+    """
+    Take an image and return the output of the model + update the logs
 
-    #detector = hub.load("https://tfhub.dev/tensorflow/centernet/hourglass_512x512/1")
-    detector = tf.keras.models.load_model(r"C:\Users\Giraud-Alexandre\Desktop\Object_Detection_For_Data_Centers\Spatial_people_counter\centernet_resnet101v1_fpn_512x512_1.tar\centernet_resnet101v1_fpn_512x512_1")
+    Input:
+        path_image
+        t: threshold to accept a prediction from the model
+        model_path: URL from tensorflow hub or path for a local model
+    """
+    #Load Object detection model
+    if model_path.startswith("https"):
+        detector = hub.load(model_path)
+    else:
+        detector = tf.keras.models.load_model(model_path)
     image_array = load_image_into_numpy_array(path_image)
     #Prediction
     detector_output = detector(image_array)
@@ -48,7 +58,7 @@ def prediction(path_image,t):
     #Draw boxes
     image_with_boxes = draw_boxes(detector_output,image_array,label_map,t)
 
-    save_image_with_boxes_and_classes(detector_output,image_with_boxes,label_map,t, path=f"outputs/" + path_image)
+    save_image_with_boxes_and_classes(detector_output,image_with_boxes,label_map,t, path=f"outputs/" + os.path.basename(path_image).split(".")[0] + ".png")
 
 if __name__=="__main__":
-    prediction(args.image,args.threshold)
+    prediction(args.image,args.threshold,args.model)
