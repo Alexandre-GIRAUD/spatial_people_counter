@@ -41,8 +41,8 @@ def prediction(path_image,t):
     with open(f"logs/logs_{day}.txt",'w+') as f:
         now = datetime.now()
         h = now.strftime("%d/%m/%Y %H:%M:%S")
-        f.write("\n")
-        f.write(h + f" : {nb_person} personnes")
+
+        f.write(h + f" : {nb_person} personnes \n")
         
 
     #Draw boxes
