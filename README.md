@@ -2,8 +2,8 @@
 
 ## Presentation
 
-This project uses object detection to count how many people are in a spatial location and track 
-the number of people over time.
+This project uses object detection to count people in a spatial location and track 
+their number over time.
 
 The idea is to call the file main.py every k minutes over image extracted from camera covering 
 the monitored area.
