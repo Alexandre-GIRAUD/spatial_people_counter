@@ -11,6 +11,14 @@ parser.add_argument("-p","--path",help="path of logs to draw a figure",required=
 args = parser.parse_args()
 
 def logs_to_fig(path_to_logs):
+    """
+    this function return an image that summarize the logs of one day
+
+    Input:
+        path_to_logs: path to the logs
+    Output:
+        png image in the logs folder
+    """
     with open(path_to_logs) as f:
         people = list()
         time = list()
