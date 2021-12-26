@@ -45,9 +45,9 @@ Add a figure in the logs folder
 
 ## Requierments 
 
-tensorflow >= 2.5
-tensorflow-hub == 0.12.0
-seaborn
-matplotlib
-numpy
+* tensorflow >= 2.5
+* tensorflow-hub == 0.12.0
+* seaborn
+* matplotlib
+* numpy
 
