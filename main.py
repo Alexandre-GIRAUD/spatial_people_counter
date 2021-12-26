@@ -61,4 +61,4 @@ def prediction(path_image,t,model_path):
     save_image_with_boxes_and_classes(detector_output,image_with_boxes,label_map,t, path=f"outputs/" + os.path.basename(path_image).split(".")[0] + ".png")
 
 if __name__=="__main__":
-    prediction(args.image,args.threshold,args.model)
+    prediction(args.image,float(args.threshold),args.model)
