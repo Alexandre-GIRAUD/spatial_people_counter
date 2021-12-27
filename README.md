@@ -8,12 +8,21 @@ their number over time.
 The idea is to call the file main.py every k minutes over image extracted from camera covering 
 the monitored area.
 
+This branch is a dockerized version of the scripts
+
 ## Usage
 
-Use object detection on an image
+First build the docker image. Go in the project repository 
+and type in cmd:
 
 ```
-python main.py -i path_to_image -t 0.8 -m "https://tfhub.dev/tensorflow/centernet/resnet50v1_fpn_512x512/1"
+docker build -t <image_name> . 
+```
+
+Then run the image and use object detection on an image
+
+```
+docker run python-spc -i path_to_image -t 0.8 -m "https://tfhub.dev/tensorflow/centernet/resnet50v1_fpn_512x512/1"
 ```
    -i,--image        path to an image
    -t, --threshold	threshold to validate a prediction from a CNN model	
@@ -45,6 +54,7 @@ Add a figure in the logs folder
 
 ## Requierments 
 
+* docker
 * tensorflow >= 2.5
 * tensorflow-hub == 0.12.0
 * seaborn
